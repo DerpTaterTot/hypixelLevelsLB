@@ -42,4 +42,7 @@ levelsKeys = sorted(playerNames, key=playerDict.get, reverse=True)
 for key in levelsKeys:
     levelsDict[key] = playerDict[key]
 
-print(levelsDict)
+currentPos = 1
+for player in levelsDict:
+    print(f"{currentPos}. {player}: {levelsDict[player]}")
+    currentPos += 1
