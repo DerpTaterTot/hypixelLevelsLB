@@ -23,7 +23,7 @@ while True:
 
     if player == "exit":
         break
-    elif not api["success"]:
+    elif not api["player"]:
         print("unable to find that player")
     else:
         playerNames.append(player)
