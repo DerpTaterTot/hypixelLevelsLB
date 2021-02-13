@@ -43,7 +43,6 @@ class Leaderboard():
     
     def findRankings(self, allPlayers, playerDict, type):
         levelsDict = {}
-        print(allPlayers, playerDict)
         levelsKeys = sorted(allPlayers, key=playerDict.get, reverse=True)
 
         for key in levelsKeys:
