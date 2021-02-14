@@ -35,8 +35,13 @@ class Leaderboard():
 
             if player == "exit":
                 break
+
             elif not api["player"]:
                 print("unable to find that player")
+            
+            elif player in playerNames:
+                print("you have already entered this player")
+
             else:
                 playerNames.append(player)
         return playerNames
@@ -50,7 +55,7 @@ class Leaderboard():
 
         currentPos = 1
         for player in levelsDict:
-            print(f"{currentPos}. {player}: {levelsDict[player]} {type}")
+            print(f"{currentPos}. {player}: {int(levelsDict[player])} {type}")
             currentPos += 1
             
     def run(self) -> None:
@@ -71,7 +76,7 @@ class Leaderboard():
 
             self.findRankings(allPlayers, self.playerDict, "xp")
                 
-        if lb == "SWSTAR":
+        elif lb == "SWSTAR":
             for playerName in allPlayers:
                 api = self.hypixelAPI(playerName)
                 swxp = api["player"]["stats"]["SkyWars"]["skywars_experience"]
@@ -81,7 +86,15 @@ class Leaderboard():
                 self.playerDict[playerName] = star
             
             self.findRankings(allPlayers, self.playerDict, "stars")
-                
+        
+        elif lb == "BWSTAR":
+            for playerName in allPlayers:
+                api = self.hypixelAPI(playerName)
+                bwstar = api["player"]["achievements"]["bedwars_level"]
+
+                self.playerDict[playerName] = bwstar
+
+            self.findRankings(allPlayers, self.playerDict, "stars")
             
 if __name__ == "__main__":
     leaderboard = Leaderboard()
